@@ -17,30 +17,31 @@
     <title>VUE SLIDER</title>
 </head>
 <body>
-
-    <div id="app">
-        <h1>TO DO LIST - VUEJS</h1>
-        <div class="buyThings">
-            <div class="text-center">
-                
-                <div class="d-flex">
-                    <input type="text" v-model="newTask.text" @keyup.enter="addElement">
-                    <button @click="addElement"><i class="fa-solid fa-plus"></i></button>    
-                </div>
-                <div v-if="hasError">Write minimum 5 charatcers</div>
+    <div id="app" class="todo-container struct">
+        <div class="text-center">
+            <div class="d-flex">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Sisport_%28logo%29.jpg" alt="logo">
+                <h1>ToDo List</h1>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Sisport_%28logo%29.jpg" alt="logo">
             </div>
-            <div>
-                <ul v-if="ingredients.length > 0">
-                    <li v-for="(item,index) in ingredients" :key="index">
-                        <span @click="alertCheck(item)" :class="item.done === true ? 'checked' :'' ">{{item.text}}</span>
-                        <button @click="removeElement(index)">X</button>
-                    </li>
-                </ul>
-                <div v-else>Hai finito</div>
-        
+            <div class="d-flex margin-lateral">
+                <input  class="myinput margin-lateral" type="text" v-model="aggiunta.text" @keyup.enter ="add" placeholder="Inserisci una task">
+                <button class="button" @click="add">+</button>    
             </div>
+            <div v-if="minlength">La task deve avere un minimo di 5 caratteri</div>
         </div>
-
+        <div class="container-fluid text-center">
+            <ul class="todo-list" v-if="list.length > 0">
+                <li class="align" v-for="(item,index) in list" :key="index">
+                    <button class="button" @click="bCheckedExercise()"><i class="fa-solid fa-check"></i></button>                   
+                    <div class="alignParagraphs">
+                        <span @click="allerta(item)" :class="{ active : isActive == index }">{{item.text}}</span>
+                        <button class="btn alignButton" @click="removeTask(index)"><p class="mycheck-trash">X</p></button>
+                    </div>
+                </li>
+            </ul>
+            <div  class="exerciseDone" v-else>Complimenti! Hai completato tutte le tue tasks giornaliere</div>
+        </div>
 
 
     </div>
@@ -48,3 +49,6 @@
     <script src="./js/script.js"></script>
 </body>
 </html>
+<!--
+
+-->
