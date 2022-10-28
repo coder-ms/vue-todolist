@@ -19,24 +19,32 @@
 <body>
 
     <div id="app">
-
         <h1>TO DO LIST - VUEJS</h1>
-        <div>
-            <h3>Add things to the list</h3>
-            <input type="text" v-model="newTask" @keyup.enter="addTask">
-            <button>Add item</button>
-            <div v-if="hasError">Il task deve essere di almeno 3 caratteri</div>
+        <div class="text-center">
+            <div class="text-center">
+                
+                <div class="d-flex">
+                    <input type="text" v-model="newTask.text" @keyup.enter="addElement">
+                    <button  @click="addElement"><i class="fa-solid fa-plus"></i></button>    
+                </div>
+                <div v-if="hasError">Write minimum 5 charatcers</div>
+            </div>
+            <div>
+                <ul v-if="list.length > 0">
+                    <li v-for="(item,index) in list" :key="index">
+                        <span @click="allert(item)" :class="item.done === true ? 'checked' :'' ">{{item.text}}</span>
+                        <button @click="removeElement(index)">X</button>
+                    </li>
+                </ul>
+                <div v-else>Hai finito</div>
+        
+            </div>
         </div>
-        <ul v-if="buyThings.length > 0">
-            <li v-for="(item,index) in buyThings" :key="index">
-                <span>{{item}}</span>
-                <button @click="removeTask(index)">Cancel item</button>
-            </li>
-        </ul>
-        <div v-else>There are no things to buy</div>
+
+
 
     </div>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.41/dist/vue.global.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>
