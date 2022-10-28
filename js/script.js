@@ -35,43 +35,49 @@ const app = createApp({
                 text :'',
             },
             hasError : false,
-            list:[
+            //element list
+            ingredients:[
                 {
-                    text: 'Grog',
+                    text: 'onion',
                     done: false,
                 },
                 {
-                    text: 'Rum',
+                    text: 'wine',
                     done: true,
                 },
                 {
-                    text: 'Pojectiles x 30',
+                    text: 'steak 600g',
                     done: false,
                 },
                 {
-                    text: 'giacca',
+                    text: 'spicies mix 30g',
                     done: false,
                 },
                 {
-                    text: 'pantaloni',
+                    text: 'oil',
                     done: true,
                 },
             ],
         }
     },
     methods:{
+        // addElement
         addElement(){
-            if(this.newTask.text.length >= 5 ){
-                this.list.unshift(newTask.text);
+            if(this.newTask.ingredients.length >= 5 ){
+                this.ingredients.unshift(newTask.ingredients);
                 this.hasError = false;
             }else{
                 this.hasError = true;
             }
-
-           this.newTask.text = '';
+           this.newTask.ingredients = '';
         },
+        // removeElement
         removeElement(i){
-            this.list.splice(i,1)
+            this.ingredients.splice(i,1);
+        },
+        // alertCheck
+        alertCheck(){
+            console.log('alaertCheck');
         }
     },
     mounted(){

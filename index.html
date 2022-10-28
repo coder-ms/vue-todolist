@@ -20,19 +20,19 @@
 
     <div id="app">
         <h1>TO DO LIST - VUEJS</h1>
-        <div class="text-center">
+        <div class="buyThings">
             <div class="text-center">
                 
                 <div class="d-flex">
                     <input type="text" v-model="newTask.text" @keyup.enter="addElement">
-                    <button  @click="addElement"><i class="fa-solid fa-plus"></i></button>    
+                    <button @click="addElement"><i class="fa-solid fa-plus"></i></button>    
                 </div>
                 <div v-if="hasError">Write minimum 5 charatcers</div>
             </div>
             <div>
-                <ul v-if="list.length > 0">
-                    <li v-for="(item,index) in list" :key="index">
-                        <span @click="allert(item)" :class="item.done === true ? 'checked' :'' ">{{item.text}}</span>
+                <ul v-if="ingredients.length > 0">
+                    <li v-for="(item,index) in ingredients" :key="index">
+                        <span @click="alertCheck(item)" :class="item.done === true ? 'checked' :'' ">{{item.text}}</span>
                         <button @click="removeElement(index)">X</button>
                     </li>
                 </ul>
