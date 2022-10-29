@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link href="./css/style.css" rel="stylesheet">
-    <title>VUE SLIDER</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <link href="./css/style.css" rel="stylesheet">
+        <title>TO DO LIST VUEJS</title>
+    </head>
 <body>
-    <div id="app" class="todo-container struct">
+    <div id="app" class="struct todo-container">
         <div class="text-center">
-            <div class="d-flex">
+            <div class="d-flex mx-5 my-3">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Sisport_%28logo%29.jpg" alt="logo">
                 <h1>ToDo List</h1>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Sisport_%28logo%29.jpg" alt="logo">
             </div>
-            <div class="d-flex margin-lateral">
-                <input  class="myinput margin-lateral" type="text" v-model="aggiunta.text" @keyup.enter ="add" placeholder="Inserisci una task">
-                <button class="button" @click="add">+</button>    
+            <div class="d-flex">
+                <input  type="text"  v-model="newTrainig.text" @keyup.enter ="addNewTraining" placeholder="Inserisci un nuvo allenamento">
+                <button class="button" @click="addNewTraining"><i class="fa-solid fa-plus"></i></button>    
             </div>
-            <div v-if="minlength">La task deve avere un minimo di 5 caratteri</div>
+            <div v-if="lessFive">La task deve avere un minimo di 5 caratteri</div>
         </div>
         <div class="container-fluid text-center">
-            <ul class="todo-list" v-if="list.length > 0">
-                <li class="align" v-for="(item,index) in list" :key="index">
-                    <button class="button" @click="bCheckedExercise()"><i class="fa-solid fa-check"></i></button>                   
-                    <div class="alignParagraphs">
-                        <span @click="allerta(item)" :class="{ active : isActive == index }">{{item.text}}</span>
-                        <button class="btn alignButton" @click="removeTask(index)"><p class="mycheck-trash">X</p></button>
+            <ul class="trainingList" v-if="trainingList.length > 0">
+                <li class="d-flex justify-content-around" v-for="(item,index) in trainingList" :key="index">
+                    <button class="button bLeft" @click="checkedTraining(index)"><i class="fa-solid fa-check"></i></button>                   
+                    <div class="adjust">
+                        <span @click="alertTrainig(index)" :class="[bActive ? 'active' : '']">{{item.text}}</span>
+                        <button class="btn spacebutton" @click="removeTraining(index)"><p class="adjust button">X</p></button>
                     </div>
                 </li>
             </ul>
-            <div  class="exerciseDone" v-else>Complimenti! Hai completato tutte le tue tasks giornaliere</div>
+            <div  class="trainingToday" v-else>Complimenti! Hai completato l'allenamento di oggi</div>
+    
         </div>
-
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@3.2.41/dist/vue.global.min.js"></script>
+
     <script src="./js/script.js"></script>
+
 </body>
 </html>
-<!--
-
--->

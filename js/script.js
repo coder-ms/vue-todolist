@@ -20,20 +20,23 @@ Bonus:
 2- cliccando sul testo dell'item, invertire il valore della proprietà done del todo corrispondente (se done era uguale a false, impostare true e viceversa)
 */
 
-const { createApp } = Vue
+const { createApp } = Vue;
 
 createApp({
   data() {
     return{
+        //boolean
         activeIndex: 0,
-        fatto: false,
-        isActive : false,
+        bChecked: false,
+        bActive : false,
 
-        aggiunta:{
+        //nuovo allenamento
+        newTrainig:{
             text :'',
         },
-        minlength : false,
-        list:[
+        
+        lessFive : false,
+        trainingList:[
             {
                 text: '3x300m rec. 3min',
                 done: false,
@@ -55,33 +58,31 @@ createApp({
                 done: true,
             },
         ]
-
     }
 },
     methods:{
-        add(){
+        addNewTraining(){
             let clone ={};
-            for(let key in this.aggiunta){
-                clone[key] = this.aggiunta[key]
+            for(let key in this.newTrainig){
+                clone[key] = this.newTrainig[key];
             }
-            if(this.aggiunta.text.length >= 5 ){
-                this.list.unshift(clone);
-                this.minlength = false;
+            if(this.newTrainig.text.length >= 5 ){
+                this.trainingList.unshift(clone);
+                this.lessFive = false;
             }else{
-                this.minlength = true;
+                this.lessFive = true;
             }
 
-           this.aggiunta.text = '';
+           this.newTrainig.text = '';
         },
-        removeTask(i){
-            this.list.splice(i,1)
+        removeTraining(ix){
+            this.trainingList.splice(ix,1);
         },
-        allerta(index){
-          fatto = true;
-
+        alertTrainig(index){
+          bChecked = true;
         },
-        checked(i){
-            this.isActive = !this.isActive;
+        checkedTraining(ix){
+            this.bActive = !this.bActive;
         }
     },
-}).mount('#app')
+}).mount('#app');
